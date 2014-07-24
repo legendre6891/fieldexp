@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,22 +14,11 @@
 
     <!-- Bootstrap core CSS -->
     <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'library/css/bootstrap.min.css' %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="starter-template.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="./js/ie-emulation-modes-warning.js"></script>
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="./assets/js/ie10-viewport-bug-workaround.js"></script>
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <link href="{% static 'library/starter-template.css' %}" rel="stylesheet">
 
   </head>
 
@@ -58,7 +49,8 @@
 
       <div class="starter-template">
         <h1>Submit Paper</h1>
-        <form action="submit_paper" method="get" accept-charset="utf-8" role="form" class="form-horizontal">
+        <form action="submit_paper" method="post" accept-charset="utf-8" role="form" class="form-horizontal">
+            {% csrf_token %}
             <div class="form-group">
                 <label class="control-label col-lg-2" for="filename" >File Name</label>
                 <div class="col-lg-10">
@@ -69,15 +61,15 @@
                 <label class="control-label col-lg-2">Type</label>
                 <div class="col-lg-10">
                     <label class="checkbox-inline" for="type0">
-                        <input class="control-label" type="checkbox" name="type[]" id="type0" value="Artefactual"/>
+                        <input class="control-label" type="checkbox" name="type" id="type0" value="Artefactual"/>
                         Artefactual
                     </label>
                     <label class="checkbox-inline">
-                        <input type="checkbox" name="type[]" id="type1" value="Framed"/>
+                        <input type="checkbox" name="type" id="type1" value="Framed"/>
                         Framed
                     </label>
                     <label class="checkbox-inline">
-                        <input type="checkbox" name="type[]" id="type1" value="Natural"/>
+                        <input type="checkbox" name="type" id="type1" value="Natural"/>
                         Natural
                     </label>
                 </div>
@@ -86,13 +78,13 @@
                 <div class="form-group" id="author1">
                     <label class="control-label col-lg-2" for="firstname1" name="author1">Author</label>
                     <div class="col-lg-3">
-                        <input type="text" class="form-control" id="firstname1" name="firstname1" placeholder="First name">
+                        <input type="text" class="form-control" id="firstname1" name="firstname" placeholder="First name">
                     </div>
                     <div class="col-lg-1">
-                        <input type="text" class="form-control" id="mi1" name="mi1" placeholder="MI">
+                        <input type="text" class="form-control" id="mi1" name="mi" placeholder="MI">
                     </div>
                     <div class="col-lg-3">
-                        <input type="text" class="form-control" id="lastname1" name="lastname1" placeholder="Last name">
+                        <input type="text" class="form-control" id="lastname1" name="lastname" placeholder="Last name">
                     </div>
                     <div id="buttons1">
                         <div class="col-lg-1">
@@ -152,6 +144,9 @@
                     <input type="email" name="email" id="email" class="form-control" placeholder=""/>
                 </div>
             </div>
+            <div class="form-group">
+                <input type="submit" value="Submit Paper"/>
+            </div>
         </form>
       </div>
 
@@ -163,8 +158,10 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
+    <script src="{% static 'library/js/bootstrap.min.js' %}"></script>
 
     <!--  Add new authors -->
     <script src="./addAuthor.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'library/addAuthor.js' %}" type="text/javascript" charset="utf-8"></script>
   </body>
 </html>
