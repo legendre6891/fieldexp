@@ -1,0 +1,167 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Starter Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'library/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="starter-template.css" rel="stylesheet">
+    <link href="{% static 'library/starter-template.css' %}" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Field Experiments</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#">Home</a></li>
+            <li class="active"><a href="#about">Submit Paper</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="starter-template">
+        <h1>Submit Paper</h1>
+        <form action="submit_paper" method="post" accept-charset="utf-8" role="form" class="form-horizontal">
+            {% csrf_token %}
+            <div class="form-group">
+                <label class="control-label col-lg-2" for="filename" >File Name</label>
+                <div class="col-lg-10">
+                    <input class="control-label" type="file" name="filename" id="filename" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-lg-2">Type</label>
+                <div class="col-lg-10">
+                    <label class="checkbox-inline" for="type0">
+                        <input class="control-label" type="checkbox" name="type" id="type0" value="Artefactual"/>
+                        Artefactual
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="type" id="type1" value="Framed"/>
+                        Framed
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="type" id="type1" value="Natural"/>
+                        Natural
+                    </label>
+                </div>
+            </div>
+            <div id="authors_div">
+                <div class="form-group" id="author1">
+                    <label class="control-label col-lg-2" for="firstname1" name="author1">Author</label>
+                    <div class="col-lg-3">
+                        <input type="text" class="form-control" id="firstname1" name="firstname" placeholder="First name">
+                    </div>
+                    <div class="col-lg-1">
+                        <input type="text" class="form-control" id="mi1" name="mi" placeholder="MI">
+                    </div>
+                    <div class="col-lg-3">
+                        <input type="text" class="form-control" id="lastname1" name="lastname" placeholder="Last name">
+                    </div>
+                    <div id="buttons1">
+                        <div class="col-lg-1">
+                            <button type="button" class="btn btn-success" id="author_button1">
+                                <span class=" glyphicon glyphicon-plus-sign"></span>
+                                Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-lg-2" for="title">Title</label>
+                <div class="col-lg-7">
+                    <input type="text" name="title" id="title" class="form-control" placeholder="Title"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-lg-2" for="citation">Citation</label>
+                <div class="col-lg-7">
+                    <input type="text" name="citation" id="citation" class="form-control" placeholder="Journal title, Volume(Issue): start page - end page"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-lg-2" for="JEL">JEL</label>
+                <div class="col-lg-7">
+                    <input type="text" name="jel" id="jel" class="form-control" placeholder=""/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-lg-2" for="keywords">Keywords</label>
+                <div class="col-lg-7">
+                    <input type="text" name="keywords" id="keywords" class="form-control" placeholder="Comma seperated"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-lg-2" for="yearmont">Year/Month</label>
+                <div class="col-lg-3">
+                    <input type="month" name="yearmonth" id="yearmonth" class="form-control" placeholder=""/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-lg-2" for="abstract">Abstract</label>
+                <div class="col-lg-7">
+                    <textarea rows="5" name="abstract" id="abstract" class="form-control" placeholder="Abstract"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-lg-2" for="submittee">Your Name</label>
+                <div class="col-lg-7">
+                    <input type="text" name="submittee" id="submittee" class="form-control" placeholder="Your name"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-lg-2" for="email">Email</label>
+                <div class="col-lg-7">
+                    <input type="email" name="email" id="email" class="form-control" placeholder=""/>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit Paper"/>
+            </div>
+        </form>
+      </div>
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="{% static 'library/js/bootstrap.min.js' %}"></script>
+
+    <!--  Add new authors -->
+    <script src="./addAuthor.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'library/addAuthor.js' %}" type="text/javascript" charset="utf-8"></script>
+  </body>
+</html>
