@@ -19,7 +19,7 @@ class Keyword(models.Model):
 
 class Paper(models.Model):
     file = models.FileField(upload_to='/library/files')
-    authors = models.ForeignKey(Author)
+    authors = models.ManyToMany(Author)
     title = models.CharField(max_length=256)
     citation = models.CharField(max_length = 256)
     jel = models.CharField(max_length = 256)
