@@ -3,6 +3,11 @@ from django.core.urlresolvers import reverse
 from django.template import RequestContext, loader
 from django.http import HttpResponse
 from library.forms import PaperForm
+
+from library.models import Author, Keyword, Paper
+
+
+
 # Create your views here.
 
 def index(request):
@@ -30,9 +35,21 @@ def submit_paper(request):
                                  "citation: %s" % request_data["citation"],
                                  "jel: %s" % request_data["jel"],
                                  "keywords: %s" % request_data["keywords"],
-                                 "yearmonth: %s" % request_data["yearmonth"],
+                                 "yearmonth: %s" %
+                                 request_data["yearmonth"].split()[-1],
                                  "abstract: %s" % request_data["abstract"],
                                  "submittee: %s" % request_data["submittee"],
                                  "email: %s" % request_data["email"],
                                 ])
+
+    paper = Paper(
+                  title     = request_data["title"],
+                  citation  = request_data["citation"],
+                  jel       = request_data["jel"],
+                  year      = "2014",
+                  abstract  = request_data["abstract"],
+                  submittee = request_data["submittee"],
+                  email     = request_data["email"])
+    paper.save()
+
     return HttpResponse(response_string)
