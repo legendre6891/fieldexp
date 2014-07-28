@@ -6,16 +6,20 @@ class Author(models.Model):
     last_name = models.CharField(max_length=50)
 
     def __unicode__(self):
-        return "%s %s. %s" % (first_name, middle_initial, last_name)
+        if self.middle_initial == '':
+            return '%s %s' % (self.first_name, self.last_name)
+        else:
+            return '%s %s. %s' % (self.first_name, self.middle_initial, self.last_name)
 
 class Keyword(models.Model):
     keyword = models.CharField(max_length = 20)
 
     def __unicode__(self):
-        return unicode(keyword)
+        return unicode(self.keyword)
 
 class Paper(models.Model):
-    authors = models.ManyToManyField(Author)
+    file = models.FileField(upload_to='/library/files')
+    authors = models.ForeignKey(Author)
     title = models.CharField(max_length=256)
     citation = models.CharField(max_length = 256)
     jel = models.CharField(max_length = 256)
@@ -25,6 +29,5 @@ class Paper(models.Model):
     submittee = models.CharField(max_length = 256)
     email = models.EmailField()
 
-
     def __unicode__(self):
-        return unicode(authors)
+        return unicode(self.title)

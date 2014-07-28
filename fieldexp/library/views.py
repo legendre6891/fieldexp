@@ -41,7 +41,6 @@ def submit_paper(request):
                                  "submittee: %s" % request_data["submittee"],
                                  "email: %s" % request_data["email"],
                                 ])
-
     paper = Paper(
                   title     = request_data["title"],
                   citation  = request_data["citation"],
