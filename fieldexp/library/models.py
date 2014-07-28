@@ -18,7 +18,7 @@ class Keyword(models.Model):
         return self.keyword
 
 class Paper(models.Model):
-    file = models.FileField(upload_to='/library/files')
+    file = models.FileField(upload_to='.')
     authors = models.ManyToManyField(Author)
     title = models.CharField(max_length=256)
     citation = models.CharField(max_length = 256)
