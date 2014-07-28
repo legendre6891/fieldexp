@@ -21,6 +21,7 @@ def submit(request):
 
 def submit_paper(request):
     request_data = request.POST
+'''
     response_string = "<br>".join(["filename: %s" % request_data["filename"],
                                  "type(s): %s" % request.POST.getlist('type'),
                                  "first name(s): %s" % request.POST.getlist('firstname'),
@@ -35,4 +36,21 @@ def submit_paper(request):
                                  "submittee: %s" % request_data["submittee"],
                                  "email: %s" % request_data["email"],
                                 ])
-    return HttpResponse(response_string)
+    '''
+data = ", ".join(["file=%s" % request_data["filename"],
+                  "type(s): %s" % request.POST.getlist('type'),
+                  "first name(s): %s" % request.POST.getlist('firstname'),
+                  "middle initial(s): %s" % request.POST.getlist('mi'),
+                  "last name(s): %s" % request.POST.getlist('lastname'),
+                  "title=%s" % request_data["title"],
+                  "citation=%s" % request_data["citation"],
+                  "JEL=%s" % request_data["jel"],
+                  "keywords=%s" % request_data["keywords"],
+                  "year=%s" % request_data["yearmonth"],
+                  "abstract=%s" % request_data["abstract"],
+                  "submittee=%s" % request_data["submittee"],
+                  "email=%s" % request_data["email"],
+                  ])
+    paper = Paper(data)
+    paper.errors
+    return HttpResponseRedirect(response_string)
