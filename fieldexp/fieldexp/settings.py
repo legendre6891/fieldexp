@@ -8,10 +8,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
-# Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES['default'] = dj_database_url.config()
-
 # Honor the 'X-Forwarded-Proto' header the request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
@@ -100,3 +96,7 @@ STATICFILES_DIRS = (
 # Media files
 MEDIA_ROOT = '/home/myusername/mypaper/' ## Change this
 MEDIA_URL = '/media/'
+
+# Parse database configuration from $DATABASE_URL
+import dj_database_url
+DATABASES['default'] = dj_database_url.config()
